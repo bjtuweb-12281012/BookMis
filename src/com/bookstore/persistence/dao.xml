@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE daoConfig
+    PUBLIC "-//ibatis.apache.org//DTD DAO Configuration 2.0//EN"
+    "http://ibatis.apache.org/dtd/dao-2.dtd">
+
+<daoConfig>
+
+  <context>
+
+    <transactionManager type="SQLMAP">
+      <property name="SqlMapConfigResource"
+        value="com/bookstore/persistence/sqlmapdao/sql/sql-map-config.xml"/>
+    </transactionManager>
+
+    <dao interface="com.bookstore.persistence.iface.BookDao"
+      implementation="com.bookstore.persistence.sqlmap.BookSqlMapDao"/>
+
+    <dao interface="com.bookstore.persistence.iface.EmployeeDao"
+      implementation="com.bookstore.persistence.sqlmap.EmployeeSqlMapDao"/>
+
+    <dao interface="com.bookstore.persistence.iface.NotesDao"
+      implementation="com.bookstore.persistence.sqlmap.NotesSqlMapDao"/>
+
+    <dao interface="com.bookstore.persistence.iface.OrderDao"
+      implementation="com.bookstore.persistence.sqlmap.OrderSqlMapDao"/>
+
+    <dao interface="com.bookstore.persistence.iface.OrderDetailDao"
+      implementation="com.bookstore.persistence.sqlmap.OrderDetailSqlMapDao"/>
+
+    <dao interface="com.bookstore.persistence.iface.PublisherDao"
+      implementation="com.bookstore.persistence.sqlmap.PublisherSqlMapDao"/>
+      
+    <dao interface="com.bookstore.persistence.iface.UserDao"
+      implementation="com.bookstore.persistence.sqlmap.UserSqlMapDao"/>
+
+  </context>
+
+</daoConfig>

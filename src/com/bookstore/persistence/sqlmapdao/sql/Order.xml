@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+    
+<sqlMap namespace="Order">
+
+  <typeAlias alias="order" type="com.bookstore.domain.Order"/>
+
+  <select id="getOrder" resultClass="order" parameterClass="string">
+    SELECT
+          ORDERFORM.ORDERID,
+          ORDERFORM.ORDERDATE,
+          ORDERFORM.USERID,
+          ORDERFORM.TOTALNUM,
+          ORDERFORM.TOTALAMOUNT,
+          ORDERFORM.PAYMENT,
+          ORDERFORM.DELIVER,
+          ORDERFORM.RECEIVER,
+          ORDERFORM.ADDRESS,
+          ORDERFORM.PHONE,
+          ORDERFORM.POSTCODE,
+          ORDERFORM.STATE
+    FROM ORDERFORM
+    WHERE ORDERFORM.ORDERID = #orderid#
+  </select>
+  
+  <select id="getOrderListByUserid" resultClass="order" parameterClass="string">
+    SELECT
+          ORDERFORM.ORDERID,
+          ORDERFORM.ORDERDATE,
+          ORDERFORM.USERID,
+          ORDERFORM.TOTALNUM,
+          ORDERFORM.TOTALAMOUNT,
+          ORDERFORM.PAYMENT,
+          ORDERFORM.DELIVER,
+          ORDERFORM.RECEIVER,
+          ORDERFORM.ADDRESS,
+          ORDERFORM.PHONE,
+          ORDERFORM.POSTCODE,
+          ORDERFORM.STATE
+    FROM ORDERFORM
+    WHERE ORDERFORM.USERID = #userid#
+  </select>
+
+<select id="getOrderList" resultClass="order">
+   SELECT
+          ORDERFORM.ORDERID,
+          ORDERFORM.ORDERDATE,
+          ORDERFORM.USERID,
+          ORDERFORM.TOTALNUM,
+          ORDERFORM.TOTALAMOUNT,
+          ORDERFORM.PAYMENT,
+          ORDERFORM.DELIVER,
+          ORDERFORM.RECEIVER,
+          ORDERFORM.ADDRESS,
+          ORDERFORM.PHONE,
+          ORDERFORM.POSTCODE,
+          ORDERFORM.STATE
+    FROM ORDERFORM        
+  </select>
+  <update id="updateOrder" parameterClass="order">
+    UPDATE ORDERFORM SET
+        ORDERDATE = #orderdate#,
+        USERID = #userid#,
+        TOTALNUM = #totalnum#,
+        TOTALAMOUNT = #totalamount#,
+        PAYMENT = #payment#,
+        DELIVER = #deliver#,
+        RECEIVER = #receiver#,
+        ADDRESS = #address#,
+        PHONE = #phone#,
+        STATE = #state#,
+        POSTCODE = #postcode#
+    WHERE ORDERFORM.ORDERID = #orderid# 
+  </update>
+
+  <insert id="insertOrder" parameterClass="order">
+    INSERT INTO ORDERFORM
+      (ORDERID,ORDERDATE, USERID, TOTALNUM, TOTALAMOUNT, PAYMENT, DELIVER, RECEIVER, ADDRESS, PHONE, POSTCODE, STATE)
+    VALUES
+      (#orderid#, #orderdate#, #userid#, #totalnum#, #totalamount#, #payment#, #deliver#, #receiver#, #address#, #phone#, #postcode#, #state#)
+  </insert>
+  
+  <delete id="deleteOrder" parameterClass="order">
+  	DELETE FROM ORDERFORM WHERE ORDERID = "orderid"
+  </delete>
+
+</sqlMap>

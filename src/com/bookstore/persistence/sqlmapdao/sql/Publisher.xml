@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Publisher">
+
+  <typeAlias alias="publisher" type="com.bookstore.domain.Publisher"/>
+
+  <select id="getPublisherbyid" resultClass="publisher" parameterClass="string">
+    SELECT
+    	PUBLISHER.PUBLISHERID,
+          PUBLISHER.NAME,
+          PUBLISHER.LINKNAME,
+          PUBLISHER.ADDRESS,
+          PUBLISHER.EMAIL,
+          PUBLISHER.PHONE,
+          PUBLISHER.WEBSITE
+    FROM PUBLISHER
+    WHERE PUBLISHER.PUBLISHERID = #publisherid#
+  </select>
+  
+  <select id="getPublisherList" resultClass="publisher" parameterClass="publisher">
+    SELECT
+    	PUBLISHER.PUBLISHERID,
+          PUBLISHER.NAME,
+          PUBLISHER.LINKNAME,
+          PUBLISHER.ADDRESS,
+          PUBLISHER.EMAIL,
+          PUBLISHER.PHONE,
+          PUBLISHER.WEBSITE
+    FROM PUBLISHER
+  </select>
+
+  <update id="updatePulisher" parameterClass="publisher">
+    UPDATE PUBLISHER SET
+        NAME = #name#,
+        LINKNAME = #linkname#,
+        ADDRESS = #address#,
+        EMAIL = #email#,
+        PHONE = #phone#,
+        WEBSITE = #website#
+    WHERE PUBLISHERID = #publisherid#
+  </update>
+
+  <insert id="insertPulisher" parameterClass="publisher">
+    INSERT INTO PUBLISHER
+      (NAME, LINKNAME, ADDRESS, EMAIL, PHONE, WEBSITE)
+    VALUES
+      (#name#, #linkname#, #address#, #email#, #phone#, #website#)
+  </insert>
+  
+  <delete id="deletePublisher" parameterClass="string">
+  	DELETE FROM PUBLISHER WHERE PUBLISHERID = #publisherid#
+  </delete>
+
+</sqlMap>

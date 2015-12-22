@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+    <!-- struts2的action必须放在一个指定的包空间下定义 -->
+    <package name="default" extends="struts-default">
+
+	<action name="excellent" class="com.bookstore.presentation.BookBean" method="getBookListByType">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/excellent.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    	<action name="newbook" class="com.bookstore.presentation.BookBean" method="getBookListByType">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/newbook.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="getBookById" class="com.bookstore.presentation.BookAction" method="getBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/bookdetail.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>    
+     <action name="addToCart" class="com.bookstore.presentation.BookBean" method="getBookById">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/addtocart.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>    
+    <action name="getBookList" class="com.bookstore.presentation.BookBean" method="getBookList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/booklist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="addBook" class="com.bookstore.presentation.BookBean" method="addBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/booklist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="deleteBook" class="com.bookstore.presentation.BookBean" method="deleteBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/booklist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="modifyBook" class="com.bookstore.presentation.BookBean" method="modifyBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/bookedit.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="updateBook" class="com.bookstore.presentation.BookBean" method="updateBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/booklist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="searchBook" class="com.bookstore.presentation.BookBean" method="searchBook">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/booklist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    
+    <action name="addUser" class="com.bookstore.presentation.UserBean" method="addUser">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/index.jsp</result>
+    	<result name="error">/index.jsp</result>
+    </action>
+     <action name="register" class="com.bookstore.presentation.UserBean" method="addUser">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/index.jsp</result>
+    	<result name="error">/index.jsp</result>
+    </action>
+    <action name="getUserList" class="com.bookstore.presentation.UserBean" method="getUserList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/userinfolist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    
+    <action name="addEmployee" class="com.bookstore.presentation.EmployeeBean" method="addEmployee">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/employeelist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="getEmployeeList" class="com.bookstore.presentation.EmployeeBean" method="getEmployeeList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/employeelist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="deleteEmployee" class="com.bookstore.presentation.EmployeeBean" method="deleteEmployee">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/employeelist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="login" class="com.bookstore.presentation.EmployeeBean" method="loginEmployee">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/top.jsp</result>
+    	<result name="error">/admin/checklogin.jsp</result>
+    </action>
+    
+    <action name="userlogin" class="com.bookstore.presentation.ReadersAction" method="loginreader">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/index.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    
+    <action name="passwordedit" class="com.bookstore.presentation.UserBean" method="PassWordEdit">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/exit.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    
+    <action name="userinfoedit" class="com.bookstore.presentation.UserBean" method="UserInfoEdit">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/index.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    
+    <action name="addPublisher" class="com.bookstore.presentation.PublisherBean" method="addPublisher">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/publisherlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+     <action name="getPublisherList" class="com.bookstore.presentation.PublisherBean" method="getPublisherList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/publisherlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="deletePublisher" class="com.bookstore.presentation.PublisherBean" method="deletePublisher">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/publisherlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="modifyPublisher" class="com.bookstore.presentation.PublisherBean" method="modifyPublisher">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/publisheredit.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="updatePublisher" class="com.bookstore.presentation.PublisherBean" method="updatePublisher">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/publisherlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+     <action name="getNotesList" class="com.bookstore.presentation.NotesBean" method="getNotesList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/noteslist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="deleteNotes" class="com.bookstore.presentation.NotesBean" method="deleteNotes">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/noteslist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+     <action name="addNotes" class="com.bookstore.presentation.NotesBean" method="addNotes">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/leaveword.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="modifyNotes" class="com.bookstore.presentation.NotesBean" method="modifyNotes">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/notesedit.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="updateNotes" class="com.bookstore.presentation.NotesBean" method="updateNotes">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/noteslist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="leaveword" class="com.bookstore.presentation.NotesBean" method="myNotesList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/leaveword.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    
+    <action name="getOrderList" class="com.bookstore.presentation.OrderBean" method="getOrderList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/orderlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="updateOrder" class="com.bookstore.presentation.OrderBean" method="updateOrder">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/orderlist.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="orderdetail" class="com.bookstore.presentation.OrderDetailBean" method="getOrderDetail">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/admin/orderdetail.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="userorderdetail" class="com.bookstore.presentation.OrderDetailBean" method="getOrderDetail">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/orderdetail.jsp</result>
+    	<result name="error">/login.jsp</result>
+    </action>
+    <action name="myorder" class="com.bookstore.presentation.OrderBean" method="getMyOrderList">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/myorder.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    <action name="addorder" class="com.bookstore.presentation.OrderBean" method="addOrder">
+    	<!-- 定义处理结果字符串和资源之间的映射关系 -->
+    	<result name="success">/myorder.jsp</result>
+    	<result name="error">/checklogin.jsp</result>
+    </action>
+    </package>
+</struts>    

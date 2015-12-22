@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    
+<sqlMap namespace="OrderDetail">
+
+  <typeAlias alias="orderdetail" type="com.bookstore.domain.OrderDetail"/>
+
+  <select id="searchOrderDetailByOrderId" resultClass="orderdetail" parameterClass="string">
+    SELECT
+          ORDERDETAIL.ORDERID,
+          ORDERDETAIL.BOOKID,
+          ORDERDETAIL.BOOKNAME,
+          ORDERDETAIL.PUBLISHER,
+          ORDERDETAIL.UNITPRICE,
+          ORDERDETAIL.ORDERNUM
+    FROM ORDERDETAIL
+    WHERE ORDERDETAIL.ORDERID = #orderid#
+  </select>
+  <select id="getOrderDetailList" resultClass="orderdetail">
+   SELECT
+          ORDERDETAIL.ORDERID,
+          ORDERDETAIL.BOOKID,
+          ORDERDETAIL.BOOKNAME,
+          ORDERDETAIL.PUBLISHER,
+          ORDERDETAIL.UNITPRICE,
+          ORDERDETAIL.ORDERNUM
+    FROM ORDERDETAIL   
+  </select>
+  <select id="getOrderDetailListByOrderid" resultClass="orderdetail" parameterClass="string">
+    SELECT
+          ORDERDETAIL.ORDERID,
+          ORDERDETAIL.BOOKID,
+          ORDERDETAIL.BOOKNAME,
+          ORDERDETAIL.PUBLISHER,
+          ORDERDETAIL.UNITPRICE,
+          ORDERDETAIL.ORDERNUM
+    FROM ORDERDETAIL
+    WHERE ORDERDETAIL.ORDERID = #orderdetailid#
+  </select>
+  <update id="updateOrderDetail" parameterClass="orderdetail">
+    UPDATE ORDERDETAIL SET
+        BOOKID = #bookid#,
+        BOOKNAME = #bookname#,
+        PUBLISHER = #publisher#,
+        UNITPRICE = #unitprice#,
+        ORDERNUM = #ordernum#
+    WHERE ORDERDETAIL.ORDERID = #orderid#
+  </update>
+
+  <insert id="insertOrderDetail" parameterClass="orderdetail">
+    INSERT INTO ORDERDETAIL
+      (ORDERID, BOOKID, BOOKNAME, PUBLISHER, UNITPRICE, ORDERNUM)
+    VALUES
+      (#orderid#,#bookid#, #bookname#, #publisher#, #unitprice#, #ordernum#)
+  </insert>
+  
+  <delete id="deleteOrderDetail" parameterClass="orderdetail">
+  	DELETE FROM ORDERDETAIL WHERE ORDERID = "orderid"
+  </delete>
+
+</sqlMap>

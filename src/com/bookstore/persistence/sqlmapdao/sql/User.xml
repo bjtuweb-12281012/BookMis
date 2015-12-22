@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="User">
+
+  <typeAlias alias="user" type="com.bookstore.domain.User"/>
+
+  <select id="getUser" resultClass="user" parameterClass="user">
+    SELECT
+          USERINFO.USERID,
+          USERINFO.USERNAME,
+          USERINFO.PASSWORD,
+          USERINFO.GENDER,
+          USERINFO.ADDRESS,
+          USERINFO.EMAIL,
+          USERINFO.PHONE,
+          USERINFO.POSTCODE,
+          USERINFO.STATE
+    FROM USERINFO
+    WHERE USERINFO.USERNAME = #username#
+      AND USERINFO.PASSWORD = #password#
+  </select>
+  
+  <select id="getUserList" resultClass="user">
+    SELECT
+          USERINFO.USERID,
+          USERINFO.USERNAME,
+          USERINFO.PASSWORD,
+          USERINFO.GENDER,
+          USERINFO.ADDRESS,
+          USERINFO.EMAIL,
+          USERINFO.PHONE,
+          USERINFO.POSTCODE,
+          USERINFO.STATE
+    FROM USERINFO
+  </select>
+  
+  <select id="searchUserByUsernameAndPassword" resultClass="user" parameterClass="user">
+    SELECT
+          USERINFO.USERID,
+          USERINFO.USERNAME,
+          USERINFO.PASSWORD,
+          USERINFO.GENDER,
+          USERINFO.ADDRESS,
+          USERINFO.EMAIL,
+          USERINFO.PHONE,
+          USERINFO.POSTCODE,
+          USERINFO.STATE
+    FROM USERINFO
+    WHERE USERINFO.USERID = #username#
+    AND USERINFO.PASSWORD = #password#
+  </select> 
+
+  <update id="updateUser" parameterClass="user">
+    UPDATE USERINFO SET
+        USERNAME = #username#,
+        PASSWORD = #password#,
+        GENDER = #gender#,
+        ADDRESS = #address#,
+        EMAIL = #email#,
+        PHONE = #phone#,
+        POSTCODE = #postcode#,
+        STATE = #state#
+    WHERE USERID = #userid# 
+  </update>
+   <update id="passwordedit" parameterClass="user">
+    UPDATE USERINFO SET
+        PASSWORD = #password#
+    WHERE USERID = #userid# 
+  </update>
+
+  <insert id="insertUser" parameterClass="user">
+    INSERT INTO USERINFO
+      (USERID, USERNAME, PASSWORD, GENDER, ADDRESS, EMAIL, PHONE, POSTCODE, STATE)
+    VALUES
+      (#userid#, #username#, #password#, #gender#, #address#, #email#, #phone#, #postcode#, #state#)
+  </insert>
+  
+  <delete id="deleteUser" parameterClass="string">
+  	DELETE FROM USERINFO WHERE USERID = #userid# 
+  </delete>
+
+</sqlMap>

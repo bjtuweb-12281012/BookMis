@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Book">
+
+  <typeAlias alias="book" type="com.bookstore.domain.Book"/>
+
+  <select id="getBookById" resultClass="book" parameterClass="string">
+    SELECT
+          BOOK.BOOKID,
+          BOOK.BOOKNAME,
+          BOOK.AUTHOR,
+          BOOK.PUBLISHERID,
+          publisher.name as publishername,
+          BOOK.PUBDATE,
+          BOOK.CATEGORY,
+          BOOK.PRICE,
+          BOOK.CONTENT,
+          BOOK.TYPE,
+          BOOK.QUANTITY,
+          BOOK.PLACE,
+          BOOK.PICTURE
+    FROM BOOK,publisher
+    WHERE BOOK.BOOKID = #id# and book.publisherid = publisher.publisherid
+  </select>
+  
+  <select id="getBookList" resultClass="book">
+    SELECT
+          BOOK.BOOKID,
+          BOOK.BOOKNAME,
+          BOOK.AUTHOR,
+          BOOK.PUBLISHERID,
+          publisher.name as publishername,
+          BOOK.PUBDATE,
+          BOOK.CATEGORY,
+          BOOK.PRICE,
+          BOOK.CONTENT,
+          BOOK.TYPE,
+          BOOK.QUANTITY,
+          BOOK.PLACE,
+          BOOK.PICTURE
+    FROM BOOK, publisher
+    where publisher.publisherid = book.publisherid                 
+  </select>
+  
+  <select id="getBookListByType" resultClass="book" parameterClass="int">
+    SELECT
+          BOOK.BOOKID,
+          BOOK.BOOKNAME,
+          BOOK.AUTHOR,
+          book.publisherid,
+          publisher.name as publishername,
+          BOOK.PUBDATE,
+          BOOK.CATEGORY,
+          BOOK.PRICE,
+          BOOK.CONTENT,
+          BOOK.TYPE,
+          BOOK.QUANTITY,
+          BOOK.PLACE,
+          BOOK.PICTURE
+    FROM BOOK ,publisher   
+    WHERE BOOK.TYPE=#type# and publisher.publisherid=book.publisherid            
+  </select>
+    <select id="searchBookList" resultClass="book" parameterClass="book">
+    SELECT
+          BOOK.BOOKID,
+          BOOK.BOOKNAME,
+          BOOK.AUTHOR,
+          BOOK.PUBLISHERID,
+          publisher.name as publishername,
+          BOOK.PUBDATE,
+          BOOK.CATEGORY,
+          BOOK.PRICE,
+          BOOK.CONTENT,
+          BOOK.TYPE,
+          BOOK.QUANTITY,
+          BOOK.PLACE,
+          BOOK.PICTURE
+    FROM BOOK,publisher    
+    WHERE (bookid like #bookid# or bookname like #bookname# or author like #author#) or (publisher.name = #publishername# and book.publisherid = publisher.publisherid) and type=#type#         
+  </select>
+
+  <update id="updateBook" parameterClass="book">
+    UPDATE BOOK SET
+        BOOKNAME = #bookname#,
+        AUTHOR = #author#,
+        PUBLISHERID = #publisherid#,
+        PUBDATE = #pubdate#,
+        CATEGORY = #category#,
+        PRICE = #price#,
+        CONTENT = #content#,
+        TYPE = #type#,
+        QUANTITY = #quantity#,
+        PLACE = #place#,
+        PICTURE = #picture#
+    WHERE BOOKID = #bookid#
+  </update>
+
+  <insert id="insertBook" parameterClass="book">
+    INSERT INTO BOOK
+      (BOOKID, BOOKNAME, AUTHOR, PUBLISHERID, PUBDATE, CATEGORY, PRICE, CONTENT, TYPE, QUANTITY, PLACE, PICTURE)
+    VALUES
+      (#bookid#, #bookname#, #author#, #publisherid#, #pubdate#, #category#, #price#, #content#, #type#, #quantity#, #place#, #picture#)
+  </insert>
+  
+  <delete id="deleteBook" parameterClass="string">
+  	DELETE FROM BOOK WHERE BOOKID = #bookid#
+  </delete>
+
+</sqlMap>

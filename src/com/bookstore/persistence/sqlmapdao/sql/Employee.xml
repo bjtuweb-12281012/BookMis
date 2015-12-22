@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="Employee">
+
+  <typeAlias alias="employee" type="com.bookstore.domain.Employee"/>
+
+  <select id="getEmployee" resultClass="employee" parameterClass="employee">
+    SELECT
+          EMPLOYEE.NAME,
+          EMPLOYEE.PASSWORD,
+          EMPLOYEE.GENDER,
+          EMPLOYEE.ADDRESS,
+          EMPLOYEE.EMAIL,
+          EMPLOYEE.PHONE,
+          EMPLOYEE.TASK
+    FROM EMPLOYEE
+    WHERE EMPLOYEE.EMPLOYEEID = #employeeid#
+  </select>
+  
+  <select id="getEmployeeBynameandPassword" resultClass="employee" parameterClass="employee">
+    SELECT
+    	EMPLOYEE.EMPLOYEEID,
+          EMPLOYEE.NAME,
+          EMPLOYEE.PASSWORD,
+          EMPLOYEE.GENDER,
+          EMPLOYEE.ADDRESS,
+          EMPLOYEE.EMAIL,
+          EMPLOYEE.PHONE,
+          EMPLOYEE.TASK
+    FROM EMPLOYEE
+    WHERE EMPLOYEE.NAME = #name#
+    		AND EMPLOYEE.PASSWORD = #password#    
+  </select>
+
+<select id="getEmployeeList" resultClass="employee">
+    SELECT
+    	  EMPLOYEE.EMPLOYEEID,
+          EMPLOYEE.NAME,
+          EMPLOYEE.PASSWORD,
+          EMPLOYEE.GENDER,
+          EMPLOYEE.ADDRESS,
+          EMPLOYEE.EMAIL,
+          EMPLOYEE.PHONE,
+          EMPLOYEE.TASK
+    FROM EMPLOYEE
+  </select>
+  
+  <update id="updateEmployee" parameterClass="employee">
+    UPDATE EMPLOYEE SET
+        NAME = #name#,
+        PASSWORD = #password#,
+        GENDER = #gender#,
+        ADDRESS = #address#,
+        EMAIL = #email#,
+        PHONE = #phone#,
+        TASK = #task#
+    WHERE EMPLOYEEID = #employeeid#
+  </update>
+
+  <insert id="insertEmployee" parameterClass="employee">
+    INSERT INTO EMPLOYEE
+      (EMPLOYEEID, NAME, PASSWORD, GENDER, ADDRESS, EMAIL, PHONE, TASK)
+    VALUES
+      (#employeeid#, #name#, #password#, #gender#, #address#, #email#, #phone#, #task#)
+  </insert>
+  
+  <delete id="deleteEmployee" parameterClass="string">
+  	DELETE FROM EMPLOYEE WHERE EMPLOYEEID = #employeeid#
+  </delete>
+
+</sqlMap>
